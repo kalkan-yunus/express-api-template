@@ -3,9 +3,9 @@ import { User } from '../entities/user-entity';
 
 const mongoDataSource = new DataSource({
 	type: 'mongodb',
-	host: 'localhost',
-	port: 27017,
-	database: 'test',
+	host: process.env.MONGODB_HOST,
+	port: Number(process.env.MONGODB_PORT),
+	database: process.env.MONGODB_DATABASE,
 	entities: [User],
 	useUnifiedTopology: true,
 	connectTimeoutMS: 3000

@@ -35,12 +35,25 @@ class MongoDatabase extends Database {
 
 	getUsers = async () => {
 		if (!this.dataSource) {
-			throw new DBConfigurationError('data source is missing');
+			throw new DBConfigurationError('');
 		}
 		try {
 			return await this.dataSource.mongoManager.find(User);
 		} catch (error) {
 			return [];
+		}
+	};
+
+	saveUser = async (user: User) => {
+		if (!this.dataSource) {
+			throw new DBConfigurationError('');
+		}
+		try {
+			await this.dataSource.mongoManager.save(user)
+			return true;
+		} catch (error) {
+			console.log(error)
+			return false;
 		}
 	};
 }

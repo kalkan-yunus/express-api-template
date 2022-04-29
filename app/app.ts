@@ -5,6 +5,7 @@ import compression from 'compression';
 import { homeRouter } from './routes/home';
 import { V1Router } from './routes/v1';
 import { loggerMiddleware } from './middlewares/logger-middleware';
+import promBundle from 'express-prom-bundle';
 
 import 'reflect-metadata';
 import { errorHandlerMiddleware } from './middlewares/error-handler-middleware';
@@ -15,6 +16,7 @@ const createApp = (): Express => {
 
 	configureApp(app);
 	applyRoutes(app);
+	applyMonitoring(app);
 
 	app.use('*', invalidRouteMiddleware);
 
@@ -29,6 +31,14 @@ const configureApp = (app: Express) => {
 
 const applyRoutes = (app: Express) => {
 	app.use(homeRouter).use('/api/v1', V1Router);
+};
+
+const applyMonitoring = (app: Express) => {
+	const metricsMiddleware = promBundle({
+		includeMethod: true,
+		includeUp: true,
+	});
+	app.use(metricsMiddleware);
 };
 
 export { createApp as app };
