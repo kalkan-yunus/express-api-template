@@ -6,6 +6,7 @@ const mongoDataSource = new DataSource({
 	host: process.env.MONGODB_HOST,
 	port: Number(process.env.MONGODB_PORT),
 	database: process.env.MONGODB_DATABASE,
+	password: process.env.MONGIDB_PASSWORD,
 	entities: [User],
 	useUnifiedTopology: true,
 	connectTimeoutMS: 3000

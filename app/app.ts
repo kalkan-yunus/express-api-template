@@ -36,7 +36,7 @@ const applyRoutes = (app: Express) => {
 const applyMonitoring = (app: Express) => {
 	const metricsMiddleware = promBundle({
 		includeMethod: true,
-		includeUp: true,
+		includeUp: true
 	});
 	app.use(metricsMiddleware);
 };

@@ -49,10 +49,10 @@ class MongoDatabase extends Database {
 			throw new DBConfigurationError('');
 		}
 		try {
-			await this.dataSource.mongoManager.save(user)
+			await this.dataSource.mongoManager.save(user);
 			return true;
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 			return false;
 		}
 	};
