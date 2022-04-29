@@ -20,6 +20,7 @@ npm audit
 * typeorm
 * mongodb
 * nodemon
+* jwt
 
 ### features
 * test

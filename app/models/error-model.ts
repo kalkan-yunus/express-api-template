@@ -72,10 +72,42 @@ class DBConfigurationError extends BaseError {
 	}
 }
 
+class AuthenticationError extends BaseError {
+	error: string;
+	constructor(error: string) {
+		super();
+		this.error = error;
+	}
+
+	toJSON() {
+		return {
+			code: 'AuthenticationError',
+			error: this.error
+		};
+	}
+}
+
+class AuthenticationMissingTokenError extends BaseError {
+	error: string;
+	constructor(error: string) {
+		super();
+		this.error = error;
+	}
+
+	toJSON() {
+		return {
+			code: 'AuthenticationMissingTokenError',
+			error: this.error
+		};
+	}
+}
+
 export {
 	BaseError,
 	InvalidParamsError,
 	InvalidRouteError,
 	DBConnectionError,
-	DBConfigurationError
+	DBConfigurationError,
+	AuthenticationMissingTokenError,
+	AuthenticationError
 };
