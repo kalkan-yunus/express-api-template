@@ -31,4 +31,5 @@ npm audit
 * test
 * coverage
 * lint
+* docker
 
