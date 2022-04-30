@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { DBConfigurationError, DBConnectionError } from '../models/error-model';
 import { Database } from './database-interface';
-import { mongoDataSource } from './datasources.ts/mongo-datasource';
+import { mongoDataSource } from './datasources/mongo-datasource';
 import { User } from './entities/user-entity';
 
 class MongoDatabase extends Database {
