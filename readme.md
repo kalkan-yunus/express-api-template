@@ -7,6 +7,10 @@
 ```bash
 npm run lint
 ```
+* to see coverage:
+```bash
+npm run cov
+```
 * to see vulnerabilities:
 ```bash
 npm audit
