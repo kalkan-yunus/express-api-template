@@ -2,7 +2,6 @@ import { NextFunction, Request } from 'express';
 import { BaseError } from '../models/error-model';
 import { CustomResponse } from '../models/response-model';
 
-
 const errorHandlerMiddleware = (
 	err: BaseError,
 	req: Request,

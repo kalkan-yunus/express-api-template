@@ -21,6 +21,7 @@ npm audit
 * mongodb
 * nodemon
 * jwt
+* webpack
 
 ### features
 * test
