@@ -26,7 +26,12 @@ const createApp = (): Express => {
 };
 
 const configureApp = (app: Express) => {
-	app.use(helmet()).use(cors()).use(compression()).use(loggerMiddleware);
+	app
+		.use(express.json())
+		.use(helmet())
+		.use(cors())
+		.use(compression())
+		.use(loggerMiddleware);
 };
 
 const applyRoutes = (app: Express) => {
