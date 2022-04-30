@@ -15,7 +15,8 @@
 		"express",
 		"node",
 		"rest-api",
-		"api"
+		"api",
+		"typescript"
 	],
 	"author": "Yunus Kalkan",
 	"license": "MIT",

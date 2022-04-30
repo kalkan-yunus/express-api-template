@@ -32,4 +32,5 @@ npm audit
 * coverage
 * lint
 * docker
+* typescript
 
