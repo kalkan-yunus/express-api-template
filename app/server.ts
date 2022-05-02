@@ -1,12 +1,13 @@
 import 'dotenv/config';
 import { app } from './app';
-import { MongoDatabase } from './databases/mongo-database';
+import { User } from './databases/entities/postgres/user-entity';
+import { PostgresDatabase } from './databases/postgres-database';
 
-let db: MongoDatabase;
+let db: PostgresDatabase;
 
 app().listen(process.env.PORT || 3000, async () => {
 	try {
-		db = await new MongoDatabase().getInstance();
+		db = await new PostgresDatabase().getInstance();
 	} catch (error) {
 		console.log(error);
 	}

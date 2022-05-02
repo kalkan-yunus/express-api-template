@@ -1,18 +1,18 @@
 import { DataSource } from 'typeorm';
 import { DBConfigurationError, DBConnectionError } from '../models/error-model';
 import { Database } from './database-interface';
-import { mongoDataSource } from './datasources/mongo-datasource';
-import { User } from './entities/mongo/user-entity';
+import { postgresDataSource } from './datasources/postres-datasource';
+import { User } from './entities/postgres/user-entity';
 
-class MongoDatabase extends Database {
-	protected instance!: MongoDatabase;
+class PostgresDatabase extends Database {
+	protected instance!: PostgresDatabase;
 	protected dataSource!: DataSource;
 
 	getInstance = async (dataSource?: DataSource) => {
 		if (this.instance) {
 			return this.instance;
 		}
-		this.instance = new MongoDatabase();
+		this.instance = new PostgresDatabase();
 		await this.initialize(dataSource);
 		return this;
 	};
@@ -20,7 +20,7 @@ class MongoDatabase extends Database {
 	initialize = async (dataSource?: DataSource) => {
 		if (!this.dataSource) {
 			if (!dataSource) {
-				this.dataSource = mongoDataSource;
+				this.dataSource = postgresDataSource;
 			} else {
 				this.dataSource = dataSource;
 			}
@@ -29,6 +29,7 @@ class MongoDatabase extends Database {
 		try {
 			await this.dataSource.initialize();
 		} catch (error) {
+			console.log(error);
 			throw new DBConnectionError('');
 		}
 	};
@@ -38,7 +39,7 @@ class MongoDatabase extends Database {
 			throw new DBConfigurationError('');
 		}
 		try {
-			return await this.dataSource.mongoManager.find(User);
+			return await this.dataSource.manager.find(User);
 		} catch (error) {
 			return [];
 		}
@@ -49,7 +50,7 @@ class MongoDatabase extends Database {
 			throw new DBConfigurationError('');
 		}
 		try {
-			await this.dataSource.mongoManager.save(user);
+			await this.dataSource.manager.save(user);
 			return true;
 		} catch (error) {
 			console.log(error);
@@ -58,4 +59,4 @@ class MongoDatabase extends Database {
 	};
 }
 
-export { MongoDatabase };
+export { PostgresDatabase };

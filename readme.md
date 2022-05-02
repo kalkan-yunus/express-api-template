@@ -22,7 +22,8 @@ npm audit
 * helmet
 * dotenv
 * typeorm
-* mongodb
+* mongodb (remove mongodb if not needed)
+* postgress (remove pg if not needed)
 * nodemon
 * jwt
 * webpack
@@ -34,3 +35,14 @@ npm audit
 * docker
 * typescript
 
+
+### docker postgres
+```bash
+docker run --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=test -d postgres
+```
+
+
+### docker postgres
+```bash
+docker run --name some-mongo -d mongo
+```
